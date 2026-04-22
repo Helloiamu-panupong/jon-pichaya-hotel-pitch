@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jon Pichaya — Hotel Pitch List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* The Roots Routes yellow/warm palette */
+  --bg: #ffffff;
+  --bg-soft: #faf7f0;
+  --bg-yellow: #f4d35e;        /* main brand yellow */
+  --bg-yellow-soft: #fdf4d3;   /* pale yellow */
+  --ink: #1f1d18;
+  --ink-soft: #4a4740;
+  --muted: #8a857c;
+  --line: #e8e4da;
+  --line-soft: #f0ece1;
+  --accent: #d9a82e;           /* deeper yellow for accents */
+  --accent-dark: #8a6b1a;
+  --success: #5a7f4a;
+  --danger: #9a4a3a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Sarabun', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 14.5px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+body.lang-th { font-family: 'Sarabun', 'Inter', sans-serif; }
+
+[data-lang-en], [data-lang-th] { display: none; }
+body.lang-en [data-lang-en] { display: initial; }
+body.lang-th [data-lang-th] { display: initial; }
+
+/* ========= HEADER ========= */
+.header {
+  background: var(--bg-yellow);
+  padding: 40px 0 36px;
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.logo-wrap {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.header-text { flex: 1; min-width: 0; }
+.brand-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 10px;
+  opacity: 0.75;
+}
+.header h1 {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+body.lang-th .header h1 { font-weight: 700; }
+.header-sub {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  max-width: 720px;
+}
+@media (max-width: 680px) {
+  .header { padding: 28px 0 24px; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .logo-wrap { width: 56px; height: 56px; }
+}
+
+/* ========= CONTROLS ========= */
+.controls {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.controls-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lang-toggle {
+  display: inline-flex;
+  background: var(--bg-soft);
+  border-radius: 100px;
+  padding: 3px;
+  border: 1px solid var(--line-soft);
+}
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 100px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.lang-toggle button.active {
+  background: var(--ink);
+  color: var(--bg-yellow);
+}
+.filter-btn, .action-btn {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.filter-btn:hover, .action-btn:hover {
+  border-color: var(--accent);
+  background: var(--bg-yellow-soft);
+}
+.filter-btn.active {
+  background: var(--ink);
+  color: var(--bg-yellow);
+  border-color: var(--ink);
+}
+.progress-display {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.progress-display strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ========= MAIN ========= */
+.main {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 32px 28px 64px;
+}
+.hotels-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* ========= HOTEL CARD (MINIMAL) ========= */
+.hotel-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+.hotel-card:hover {
+  border-color: var(--accent);
+}
+.hotel-card.selected {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-yellow-soft);
+}
+.hotel-card.excluded {
+  opacity: 0.5;
+  background: var(--bg-soft);
+}
+.hotel-card.hidden { display: none; }
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line-soft);
+  flex-wrap: wrap;
+}
+.card-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  background: var(--bg-yellow);
+  padding: 3px 9px;
+  border-radius: 3px;
+  min-width: 32px;
+  text-align: center;
+}
+.card-title {
+  flex: 1;
+  min-width: 180px;
+}
+.hotel-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+.hotel-category {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.priority-badge {
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.priority-badge.high {
+  background: var(--accent);
+  color: var(--bg);
+}
+.priority-badge.medium {
+  background: var(--line);
+  color: var(--ink-soft);
+}
+
+.card-body {
+  padding: 18px 22px 20px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 20px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--line-soft);
+}
+.info-item { display: flex; flex-direction: column; gap: 2px; }
+.info-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.info-value {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.info-value a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.15s;
+}
+.info-value a:hover { border-bottom-color: var(--accent); }
+
+.section-block { margin-bottom: 12px; }
+.section-block:last-of-type { margin-bottom: 0; }
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.section-text {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.link-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line-soft);
+}
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.link-btn:hover {
+  background: var(--ink);
+  color: var(--bg-yellow);
+  border-color: var(--ink);
+}
+.link-btn.email:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: var(--bg); }
+.link-btn.map:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.link-btn .icon { font-size: 13px; }
+.link-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Decision Box */
+.decision-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--bg-soft);
+  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+}
+.hotel-card.selected .decision-box {
+  background: var(--bg);
+  border-color: var(--accent);
+}
+.decision-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.decision-radios { display: flex; gap: 4px; flex-wrap: wrap; }
+.radio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--bg);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.02em;
+  font-family: inherit;
+}
+.radio-btn:hover { border-color: var(--accent); }
+.radio-btn.sel-active { background: var(--success); color: var(--bg); border-color: var(--success); }
+.radio-btn.exc-active { background: var(--danger); color: var(--bg); border-color: var(--danger); }
+.radio-btn.pen-active { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+.status-indicator {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+}
+.status-indicator.sel { color: var(--success); }
+.status-indicator.exc { color: var(--danger); }
+
+.note-textarea {
+  width: 100%;
+  min-height: 54px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1.55;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+.note-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.note-textarea::placeholder { color: var(--muted); }
+
+/* ========= FOOTER ========= */
+.footer {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+  padding: 28px 0;
+  margin-top: 40px;
+}
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-brand {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.footer-tag {
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-top: 2px;
+}
+.footer-meta {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  text-align: right;
+}
+@media (max-width: 680px) { .footer-meta { text-align: left; } }
+.footer-meta a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Reset */
+.reset-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ink);
+  color: var(--bg-yellow);
+  padding: 10px 16px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.25s;
+  z-index: 100;
+  font-size: 12.5px;
+}
+.reset-bar.show { transform: translateX(-50%) translateY(0); }
+.reset-bar button {
+  border: 1px solid var(--bg-yellow);
+  background: transparent;
+  color: var(--bg-yellow);
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11.5px;
+  font-family: inherit;
+  font-weight: 500;
+}
+.reset-bar button.danger { background: var(--danger); border-color: var(--danger); color: var(--bg); }
+
+@media (max-width: 680px) {
+  .card-top { padding: 14px 16px; }
+  .card-body { padding: 14px 16px 16px; }
+  .controls-inner { gap: 10px; }
+  .main { padding: 20px 16px 48px; }
+}
+
+@media print {
+  .controls, .footer, .reset-bar { display: none !important; }
+  .decision-radios { display: none !important; }
+  .note-textarea { border: 1px solid #ccc; }
+  .hotel-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; }
+  .hotel-card.excluded { display: none !important; }
+  .header { background: var(--bg) !important; border-bottom: 2px solid var(--ink); }
+}
+</style>
+</head>
+<body class="lang-en">
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="https://images.squarespace-cdn.com/content/v1/604daa85fdd7a73331ebed5d/11bd3604-e3dc-4a47-8be2-1a409cf39dc0/RR-Logo-Nav.png?format=1500w" alt="The Roots Routes" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:var(--ink); color:var(--bg-yellow); font-weight:700; font-size:18px; border-radius:50%;">RR</div>
+    </div>
+    <div class="header-text">
+      <div class="brand-label">
+        <span data-lang-en>The Roots Routes · Jon Pichaya Boat</span>
+        <span data-lang-th>เดอะ รูทส์ รูทส์ · เรือจอน ปิชญา</span>
+      </div>
+      <h1>
+        <span data-lang-en>Jon Pichaya Boat — Presentation Details</span>
+        <span data-lang-th>รายละเอียดการนำเสนอ เรือจอน ปิชญา</span>
+      </h1>
+      <div class="header-sub">
+        <span data-lang-en>B2B hotel pitch list · Bangkok riverside boutique &amp; heritage properties</span>
+        <span data-lang-th>รายชื่อโรงแรมสำหรับพิตช์ B2B · โรงแรมบูทีคและมรดกริมน้ำเจ้าพระยา</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Controls -->
+<div class="controls">
+  <div class="controls-inner">
+    <div class="control-group">
+      <div class="lang-toggle">
+        <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="btn-th" onclick="setLang('th')">ไทย</button>
+      </div>
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">
+        <span data-lang-en>All</span><span data-lang-th>ทั้งหมด</span>
+      </button>
+      <button class="filter-btn" data-filter="High" onclick="setFilter('High', this)">
+        <span data-lang-en>High</span><span data-lang-th>สูง</span>
+      </button>
+      <button class="filter-btn" data-filter="Medium" onclick="setFilter('Medium', this)">
+        <span data-lang-en>Medium</span><span data-lang-th>ปานกลาง</span>
+      </button>
+      <button class="filter-btn" data-filter="selected" onclick="setFilter('selected', this)">
+        <span data-lang-en>✓ Selected</span><span data-lang-th>✓ เลือกแล้ว</span>
+      </button>
+    </div>
+    <div class="control-group">
+      <div class="progress-display">
+        <span data-lang-en>Selected: <strong id="count-selected">0</strong> / <strong id="count-total">0</strong></span>
+        <span data-lang-th>เลือก: <strong id="count-selected-th">0</strong> / <strong id="count-total-th">0</strong></span>
+      </div>
+      <a class="action-btn" href="https://docs.google.com/spreadsheets/d/1_WmVZob2I83QOcdyCNoPAESrAazpiM0sGaQ5kryvWac/edit?gid=549601759#gid=549601759" target="_blank" rel="noopener" style="text-decoration:none;">
+        <span data-lang-en>Master Sheet</span><span data-lang-th>ชีตต้นฉบับ</span>
+      </a>
+      <button class="action-btn" onclick="exportData()">
+        <span data-lang-en>Export</span><span data-lang-th>ส่งออก</span>
+      </button>
+      <button class="action-btn" onclick="window.print()">
+        <span data-lang-en>Print</span><span data-lang-th>พิมพ์</span>
+      </button>
+      <button class="action-btn" onclick="confirmReset()">
+        <span data-lang-en>Reset</span><span data-lang-th>รีเซ็ต</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Main -->
+<main class="main">
+  <div id="hotels-grid" class="hotels-grid"></div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">The Roots Routes</div>
+      <div class="footer-tag">Travel Deeper</div>
+    </div>
+    <div class="footer-meta">
+      <span data-lang-en>
+        Jon Pichaya Hotel Pitch List · Prepared by Yoo<br>
+        Source: <a href="https://docs.google.com/spreadsheets/d/1_WmVZob2I83QOcdyCNoPAESrAazpiM0sGaQ5kryvWac/edit?gid=549601759#gid=549601759" target="_blank">Master Sheet</a> · Notes saved in your browser
+      </span>
+      <span data-lang-th>
+        รายชื่อโรงแรมพิตช์ Jon Pichaya · จัดทำโดย ยู<br>
+        แหล่งข้อมูล: <a href="https://docs.google.com/spreadsheets/d/1_WmVZob2I83QOcdyCNoPAESrAazpiM0sGaQ5kryvWac/edit?gid=549601759#gid=549601759" target="_blank">ชีตต้นฉบับ</a> · โน้ตบันทึกในเบราว์เซอร์
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Reset bar -->
+<div id="reset-bar" class="reset-bar">
+  <span data-lang-en>Clear all selections &amp; notes?</span>
+  <span data-lang-th>ล้างการเลือกและโน้ตทั้งหมด?</span>
+  <button onclick="hideReset()"><span data-lang-en>Cancel</span><span data-lang-th>ยกเลิก</span></button>
+  <button class="danger" onclick="doReset()"><span data-lang-en>Clear All</span><span data-lang-th>ล้าง</span></button>
+</div>
+
+<script>
+const HOTELS = [{"no": 1, "name": "Praya Palazzo", "category": "Historic Riverside Mansion Boutique", "priority": "High", "riverside": "Directly on Chao Phraya (private pier, access by boat only)", "address": "757/1 Somdet Phra Pin Klao Rd, Bang Yi Khan, Bang Phlat, Bangkok 10700", "pier": "Hotel shuttle boat from Phra Athit Pier (free for guests)", "website": "www.prayapalazzo.com", "phone": "+66 81 402 8118", "email": "reservation@prayapalazzo.com", "owner": "Private owners (Thai family)", "history": "Restored Italian-style mansion built in 1923 during King Rama VI era, originally named 'Baan Bang Yi Khan'. Restored into a 17-room boutique hotel in 2010. Michelin-starred restaurant on-site (Praya Dining). Featured in Time's 'World's Greatest Places'.", "notes": "Runs own shuttle boat for guests only. No cruise product — high potential for Jon Pichaya pitch as upscale dinner/sunset cruise add-on.", "maps": "https://maps.app.goo.gl/yu2axcSkCeGXXd34A", "th_category": "บูทีคคฤหาสน์ริมน้ำประวัติศาสตร์", "th_riverside": "ติดแม่น้ำเจ้าพระยา (มีท่าเรือส่วนตัว เข้าถึงได้ทางเรือเท่านั้น)", "th_pier": "เรือรับส่งของโรงแรมจากท่าพระอาทิตย์ (ฟรีสำหรับแขก)", "th_history": "คฤหาสน์สไตล์อิตาเลียนสร้างปี 2466 สมัยรัชกาลที่ 6 เดิมชื่อ 'บ้านบางยี่ขัน' บูรณะเป็นโรงแรมบูทีค 17 ห้องในปี 2553 มีร้านอาหารระดับ Michelin (Praya Dining) และได้รับเลือกให้ติดอันดับ 'World's Greatest Places' ของนิตยสาร Time", "th_notes": "มีเรือรับส่งเฉพาะแขกโรงแรม ไม่มี cruise ของตัวเอง — ศักยภาพสูงสำหรับการพิตช์ Jon Pichaya เป็น add-on มื้อค่ำ/ล่องชมพระอาทิตย์ตกระดับพรีเมียม"}, {"no": 2, "name": "Neil Niwas", "category": "Royal-era Heritage Boutique", "priority": "High", "riverside": "~800m from Chao Phraya (Thonburi, near Wat Arun),Directly on bangkok yai canel", "address": "86 Soi Itsaraphap 28, Wat Arun, Bangkok Yai, Bangkok 10600", "pier": "Wat Arun Pier (8-min walk) ,  Directly on bangkok yai canel", "website": "www.neilniwas.com", "phone": "+66 95 793 2874", "email": "info@neilniwas.com", "owner": "Veena (private Thai owner)", "history": "130-year-old restored residence from the King Rama V era. 4-room boutique. Owner Veena personally restored the property over 7 years.", "notes": "No cruise. Very small but intensely cultural — excellent fit.", "maps": "https://maps.app.goo.gl/36QPwAPkLJwm1fnV8", "th_category": "บูทีคมรดกสมัยรัชกาลที่ 5", "th_riverside": "ห่างจากเจ้าพระยาประมาณ 800 ม. (ฝั่งธน ใกล้วัดอรุณ) ติดคลองบางกอกใหญ่โดยตรง", "th_pier": "ท่าวัดอรุณ (เดิน 8 นาที), ติดคลองบางกอกใหญ่โดยตรง", "th_history": "บ้านโบราณอายุ 130 ปี สมัยรัชกาลที่ 5 ได้รับการบูรณะเป็นบูทีค 4 ห้อง เจ้าของ คุณวีณา บูรณะด้วยตัวเองนาน 7 ปี", "th_notes": "ไม่มี cruise เล็กแต่เน้นวัฒนธรรมอย่างเข้มข้น — เหมาะสมมาก"}, {"no": 3, "name": "CHANN Bangkok-Noi", "category": "Thai Traditional Boutique", "priority": "High", "riverside": "On canal off Chao Phraya (Thonburi side)", "address": "30/1 Soi Somdej Pra Pinklaow 1, Arun Amarin, Bangkok Noi, Bangkok 10700", "pier": "Phra Pin Klao Bridge Pier (5-min walk) or Phra Athit (across river)", "website": "https://www.facebook.com/ChannBangkokNoi", "phone": "+66 82 632 3994", "email": "channbangkoknoi@gmail.com", "owner": "Private Thai owner", "history": "Traditional Thai teak house boutique near Wat Dusidharam. Evokes Jim Thompson House vibe. ~10 rooms.", "notes": "No cruise. high potential — small but cultural-forward.", "maps": "https://maps.app.goo.gl/ppYxgqrqiTjforhC7", "th_category": "บูทีคไทยดั้งเดิม", "th_riverside": "ติดคลองที่แยกจากเจ้าพระยา (ฝั่งธนบุรี)", "th_pier": "ท่าสะพานพระปิ่นเกล้า (เดิน 5 นาที) หรือท่าพระอาทิตย์ (ข้ามแม่น้ำ)", "th_history": "บูทีคบ้านไม้สักไทยดั้งเดิม ใกล้วัดดุสิดาราม ให้อารมณ์คล้าย Jim Thompson House ประมาณ 10 ห้อง", "th_notes": "ไม่มี cruise ศักยภาพสูง — ขนาดเล็กแต่เน้นวัฒนธรรม"}, {"no": 4, "name": "sala rattanakosin Bangkok", "category": "Modern Riverside Boutique", "priority": "High", "riverside": "Directly on Chao Phraya (facing Wat Arun)", "address": "39 Thanon Maha Rat, Phra Borom Maha Ratchawang, Phra Nakhon, Bangkok 10200", "pier": "Tha Tien Pier (2-min walk)", "website": "www.salahospitality.com/rattanakosin", "phone": "+66 2 622 1388", "email": "stay@salarattanakosin.com", "owner": "SALA Hospitality Group", "history": "17-room boutique hotel in a restored 80-year-old shophouse. Part of the SALA Hospitality Group. Iconic rooftop bar 'The Roof' with Wat Arun views. Opened 2011.", "notes": "No in-house cruise. High potential — small property with tourism-savvy guests. Rooftop offers cross-sell opportunity (dinner then cruise).", "maps": "https://maps.app.goo.gl/Xz8yJq6U5tZTKTnx8", "th_category": "บูทีคริมน้ำสมัยใหม่", "th_riverside": "ติดเจ้าพระยา (หันหน้าสู่วัดอรุณ)", "th_pier": "ท่าเตียน (เดิน 2 นาที)", "th_history": "โรงแรมบูทีค 17 ห้องในตึกแถวอายุ 80 ปีที่ได้รับการบูรณะ ในเครือ SALA Hospitality Group มีรูฟท็อปบาร์ 'The Roof' วิววัดอรุณเป็นไอคอน เปิดปี 2554", "th_notes": "ไม่มี cruise ในเครือ ศักยภาพสูง — แขกเป็น tourism-savvy รูฟท็อปเปิดโอกาส cross-sell (ดินเนอร์แล้วต่อด้วย cruise)"}, {"no": 5, "name": "Inn A Day", "category": "Quirky Historic Boutique", "priority": "High", "riverside": "Directly on Chao Phraya (facing Wat Arun)", "address": "57-61 Thanon Maha Rat, Phra Borom Maha Ratchawang, Phra Nakhon, Bangkok 10200", "pier": "Tha Tien Pier (2-min walk)", "website": "www.innaday.com", "phone": "+66 2 221 0577", "email": "info@innaday.com", "owner": "Private (Thai architect-owner)", "history": "Boutique hotel in a converted sugar factory from the Rama V era. Only 11 rooms, each themed to represent stages of sugar production. Famous rooftop with Wat Arun views.", "notes": "No cruise product. Culture-focused — aligns well with Jon Pichaya's premium Thai heritage angle.", "maps": "https://maps.app.goo.gl/98ana7aBFFV3M3k3A", "th_category": "บูทีคประวัติศาสตร์สไตล์ควอร์กกี้", "th_riverside": "ติดเจ้าพระยา (หันหน้าสู่วัดอรุณ)", "th_pier": "ท่าเตียน (เดิน 2 นาที)", "th_history": "โรงแรมบูทีคในโรงงานน้ำตาลเก่าสมัยรัชกาลที่ 5 มีเพียง 11 ห้อง แต่ละห้องตกแต่งตามขั้นตอนการผลิตน้ำตาล มีรูฟท็อปชื่อดังวิววัดอรุณ", "th_notes": "ไม่มี cruise เน้นวัฒนธรรม — สอดคล้องกับมุม heritage พรีเมียมไทยของ Jon Pichaya"}, {"no": 6, "name": "Riva Surya Bangkok", "category": "Contemporary Riverside Boutique", "priority": "High", "riverside": "Directly on Chao Phraya", "address": "23 Phra Athit Rd, Chana Songkhram, Phra Nakhon, Bangkok 10200", "pier": "Phra Athit Pier (2-min walk)", "website": "www.rivasuryabangkok.com", "phone": "+66 2 633 5000", "email": "stay@rivasuryabangkok.com", "owner": "Riva Hospitality Group (Thai)", "history": "68-key boutique on Phra Athit Road near Khao San. Sister to Riva Arun. A fashionable riverside stay popular with European FITs.", "notes": "No own cruise. High potential — group has 2 riverside properties (Riva Surya + Riva Arun), pitch both.", "maps": "https://maps.app.goo.gl/EMUmsDuUAZMHGte79", "th_category": "บูทีคริมน้ำร่วมสมัย", "th_riverside": "ติดเจ้าพระยา", "th_pier": "ท่าพระอาทิตย์ (เดิน 2 นาที)", "th_history": "บูทีค 68 ห้อง บนถนนพระอาทิตย์ ใกล้ถนนข้าวสาร เป็นโรงแรมพี่น้องกับ Riva Arun นิยมในหมู่ FIT ยุโรป", "th_notes": "ไม่มี cruise ของตัวเอง ศักยภาพสูง — กลุ่มมีโรงแรมริมน้ำ 2 แห่ง (Riva Surya + Riva Arun) พิตช์รวมกันได้"}, {"no": 7, "name": "Loy La Long Hotel", "category": "Intimate Riverside Boutique (Chinatown)", "priority": "High", "riverside": "Directly on Chao Phraya (built on stilts)", "address": "1620/2 Songwat Rd, Samphanthawong, Bangkok 10100 (inside Wat Pathum Khongkha grounds)", "pier": "Marine Department Pier (3-min walk) or Ratchawongse Pier (5-min)", "website": "www.loylalong.com", "phone": "+66 2 639 1390", "email": "info@loylalong.com", "owner": "Dutch-Thai couple (private owner)", "history": "100+ year-old wooden house on stilts, inside the grounds of Wat Pathum Khongkha, a royal temple in Chinatown. Only 6 rooms. Unique because it sits directly over the river.", "notes": "No cruise. Strongly aligned with premium culture-focused cruise (similar guest profile).", "maps": "https://maps.app.goo.gl/uSN5Cr9VkjzxdLSg9", "th_category": "บูทีคริมน้ำขนาดเล็ก (เยาวราช)", "th_riverside": "ติดเจ้าพระยา (สร้างบนเสาค้ำยันในน้ำ)", "th_pier": "ท่ากรมเจ้าท่า (เดิน 3 นาที) หรือท่าราชวงศ์ (เดิน 5 นาที)", "th_history": "บ้านไม้อายุกว่า 100 ปี บนเสาค้ำยันในเขตวัดปทุมคงคา วัดหลวงในเยาวราช มีเพียง 6 ห้อง จุดเด่นคือตั้งอยู่เหนือแม่น้ำโดยตรง", "th_notes": "ไม่มี cruise สอดคล้องอย่างมากกับ cruise พรีเมียมเน้นวัฒนธรรม (โปรไฟล์แขกใกล้เคียงกัน)"}, {"no": 8, "name": "Amdaeng by NJOY Prestige Hotel", "category": "Riverside Boutique (Klong San)", "priority": "High", "riverside": "Directly on Chao Phraya (Thonburi side, near ICONSIAM)", "address": "12/1 Soi Chiang Mai, Khlong San, Bangkok 10600", "pier": "ICONSIAM Pier 1 (15-min walk) or shuttle via ICONSIAM", "website": "http://www.amdaeng.com/", "phone": "+66 2 162 0138", "email": "Email not found", "owner": "NJOY Prestige Group (Thai)", "history": "Small boutique on the Klong San side with Hidden Gem rooftop bar overlooking the river. Themed on old Siam aesthetic.", "notes": "No cruise. High potential.", "maps": "https://maps.app.goo.gl/8gsx8P726vSRn7qn6", "th_category": "บูทีคริมน้ำ (คลองสาน)", "th_riverside": "ติดเจ้าพระยา (ฝั่งธน ใกล้ ICONSIAM)", "th_pier": "ท่า ICONSIAM Pier 1 (เดิน 15 นาที) หรือเรือรับส่งผ่าน ICONSIAM", "th_history": "บูทีคขนาดเล็กฝั่งคลองสาน มีรูฟท็อปบาร์ Hidden Gem วิวแม่น้ำ ธีมสยามโบราณ", "th_notes": "ไม่มี cruise ศักยภาพสูง"}, {"no": 9, "name": "Pranakorn Heritage Hotel", "category": "Heritage Boutique (Old Town)", "priority": "High", "riverside": "~800m from Chao Phraya", "address": "167/4 Prachathipatai Rd, Bang Khun Phrom, Phra Nakhon, Bangkok 10200", "pier": "Phra Athit Pier (12-min walk / 5-min tuk-tuk)", "website": "www.pranakornheritage.com", "phone": "+66 2 282 4515", "email": "rsvn@pranakornheritage.com", "owner": "Private Thai ownership", "history": "Heritage boutique in Bangkok Old Town close to the Grand Palace area. Known for top-tier breakfast and rooftop pool bar.", "notes": "No cruise. High potential — culture-focused guests.", "maps": "https://maps.app.goo.gl/WevUo8DrpkyvSs3k8", "th_category": "บูทีคมรดก (เมืองเก่า)", "th_riverside": "ห่างจากเจ้าพระยาประมาณ 800 ม.", "th_pier": "ท่าพระอาทิตย์ (เดิน 12 นาที / ตุ๊กตุ๊ก 5 นาที)", "th_history": "บูทีคมรดกในเขตเมืองเก่า ใกล้พระบรมมหาราชวัง ขึ้นชื่อเรื่องอาหารเช้าระดับท็อปและพูลบาร์ดาดฟ้า", "th_notes": "ไม่มี cruise ศักยภาพสูง — แขกเน้นวัฒนธรรม"}, {"no": 10, "name": "The Raweekanlaya Bangkok Wellness Cuisine Resort", "category": "Heritage Wellness Resort", "priority": "High", "riverside": "~900m from Chao Phraya", "address": "172 Krung Kasem Rd, Bang Khun Phrom, Phra Nakhon, Bangkok 10200", "pier": "Phra Athit Pier (15-min walk) or Thewet Pier (10-min walk)", "website": "www.raweekanlaya.com", "phone": "+66 2 628 5999", "email": "rsvn@raweekanlaya.com", "owner": "Private (Thai heritage property)", "history": "Boutique resort in a restored King Rama VI-era palace. Focus on wellness cuisine. Large garden in the middle of the Old Town.", "notes": "No cruise. High potential — wellness/cultural guests are a perfect fit.", "maps": "https://maps.app.goo.gl/zqG12WDftENuUA2d9", "th_category": "รีสอร์ทมรดก/เวลเนส", "th_riverside": "ห่างจากเจ้าพระยาประมาณ 900 ม.", "th_pier": "ท่าพระอาทิตย์ (เดิน 15 นาที) หรือท่าเทเวศร์ (เดิน 10 นาที)", "th_history": "รีสอร์ทบูทีคในวังเก่าสมัยรัชกาลที่ 6 เน้น wellness cuisine สวนขนาดใหญ่ใจกลางเมืองเก่า", "th_notes": "ไม่มี cruise ศักยภาพสูง — แขก wellness/วัฒนธรรมตรงกลุ่มเป้าหมายพอดี"}, {"no": 11, "name": "Baan Wang Lang Riverside", "category": "Cultural Local-style Boutique", "priority": "High", "riverside": "Directly on Chao Phraya (Thonburi side)", "address": "342 Soi Trok Wat Rakhang, Siriraj, Bangkok Noi, Bangkok 10700", "pier": "Wang Lang Pier (2-min walk)", "website": "www.baanwanglang.com", "phone": "+66 2 412 7234", "email": "info@baanwanglang.com", "owner": "Local Thai owner", "history": "Compact boutique inside the Wang Lang local market. Guests experience authentic local life. Opened to grow interest in community-based tourism.", "notes": "No cruise. — clientele looks for local Thai experiences which aligns well.", "maps": "https://maps.app.goo.gl/x3zXsGqxSwuL9LbNA", "th_category": "บูทีคสไตล์ท้องถิ่นเน้นวัฒนธรรม", "th_riverside": "ติดเจ้าพระยา (ฝั่งธน)", "th_pier": "ท่าวังหลัง (เดิน 2 นาที)", "th_history": "บูทีคขนาดย่อมในตลาดวังหลัง แขกสัมผัสวิถีชีวิตท้องถิ่นแท้จริง เปิดเพื่อส่งเสริม community-based tourism", "th_notes": "ไม่มี cruise ลูกค้ามองหาประสบการณ์ไทยท้องถิ่น สอดคล้องดี"}, {"no": 12, "name": "Baan 2459 Heritage Boutique Hotel", "category": "Chinatown Heritage Boutique", "priority": "High", "riverside": "~600m from Chao Phraya", "address": "98 Yaowarat Rd, Samphanthawong, Bangkok 10100", "pier": "Ratchawongse Pier (8-min walk) or Marine Department Pier (10-min)", "website": "https://www.baan2459hotel.com/", "phone": "+66 82 393 2459", "email": "baan2459@gmail.com", "owner": "Private Thai-Chinese family", "history": "Restored century-old (built B.E. 2459 = 1916) Sino-Portuguese house on Yaowarat Road. Only 4 rooms with antique furniture.", "notes": "No cruise. Chinatown heritage story pairs well with the cruise product.", "maps": "https://maps.app.goo.gl/zRgqQgd5QY75sXvQ6", "th_category": "บูทีคมรดกเยาวราช", "th_riverside": "ห่างจากเจ้าพระยาประมาณ 600 ม.", "th_pier": "ท่าราชวงศ์ (เดิน 8 นาที) หรือท่ากรมเจ้าท่า (เดิน 10 นาที)", "th_history": "บ้านจีน-โปรตุกีสอายุร้อยปี (สร้าง พ.ศ. 2459 = 1916) บนถนนเยาวราช ได้รับการบูรณะ มีเพียง 4 ห้อง ตกแต่งด้วยเฟอร์นิเจอร์โบราณ", "th_notes": "ไม่มี cruise เรื่องราวมรดกเยาวราชเข้ากับ cruise ได้ดี"}, {"no": 13, "name": "ARUN Residence and Sala Arun", "category": "Intimate Riverside Boutique", "priority": "High", "riverside": "Directly on Chao Phraya", "address": "36-38 Soi Pratoo Nok Yoong, Maharat Rd, Phra Nakhon, Bangkok 10200", "pier": "Tha Tien Pier (3-min walk)", "website": "www.arunresidence.com", "phone": "+66 83 988 8736", "email": "arun.residence.group@gmail.com", "owner": "Private (Thai ownership)", "history": "Small 5-room boutique in a restored wooden house opposite Wat Arun. Famous for 'The Deck' restaurant overlooking the temple.", "notes": "No cruise product. Compact scale — pitch as 'guest experience' add-on rather than high volume.", "maps": "https://maps.app.goo.gl/HnznxcgAvd6rCJoNA", "th_category": "บูทีคริมน้ำขนาดเล็ก", "th_riverside": "ติดเจ้าพระยา", "th_pier": "ท่าเตียน (เดิน 3 นาที)", "th_history": "บูทีค 5 ห้องในบ้านไม้ที่บูรณะแล้ว ตรงข้ามวัดอรุณ ร้านอาหาร 'The Deck' ชื่อดัง วิววัดอรุณ", "th_notes": "ไม่มี cruise ขนาดเล็ก — เหมาะพิตช์เป็น add-on สำหรับแขกมากกว่าเน้นปริมาณ"}, {"no": 14, "name": "Sala Arun Hotel", "category": "Riverside Boutique (Wat Arun view)", "priority": "High", "riverside": "Directly on Chao Phraya", "address": "47-49 Soi Tha Tian, Phra Borom Maha Ratchawang, Phra Nakhon, Bangkok 10200", "pier": "Tha Tien Pier (1-min walk)", "website": "https://www.salaarun.com/contact-us/", "phone": "+66 2 622 2932", "email": "service@salaarun.com", "owner": "Private (Thai ownership)", "history": "17-room boutique hotel in a restored 80-year-old shophouse. Part of the SALA Hospitality Group. Iconic rooftop bar 'The Roof' with Wat Arun views. Opened 2011.", "notes": "No in-house cruise. High potential — small property with tourism-savvy guests. Rooftop offers cross-sell opportunity (dinner then cruise).", "maps": "https://maps.app.goo.gl/yhGxap3AJ5aXMh116", "th_category": "บูทีคริมน้ำ (วิววัดอรุณ)", "th_riverside": "ติดเจ้าพระยา", "th_pier": "ท่าเตียน (เดิน 1 นาที)", "th_history": "โรงแรมบูทีค 17 ห้องในตึกแถวอายุ 80 ปีที่บูรณะแล้ว ในเครือ SALA Hospitality Group รูฟท็อปบาร์ 'The Roof' วิววัดอรุณเป็นไอคอน เปิดปี 2554", "th_notes": "ไม่มี cruise ในเครือ ศักยภาพสูง — แขก tourism-savvy รูฟท็อปเอื้อต่อการ cross-sell (ดินเนอร์ + cruise)"}, {"no": 15, "name": "Theatre Residence", "category": "Heritage Cultural Boutique (Former Patravadi Theatre)", "priority": "High", "riverside": "Directly on Chao Phraya (Thonburi side, facing Grand Palace)", "address": "69/4-8 Soi Wat Rakang, Arun Amrin Rd, Siriraj, Bangkok Noi, Bangkok 10700", "pier": "Wang Lang Pier N10 (5-min walk through market); hotel's own tuk-tuk shuttle to main road", "website": "https://www.theatreresidence.com/", "phone": "+66 2 848 9488", "email": "info@theatreresidence.com", "owner": "Sritrairatana family (Velvadi Sritrairatana — daughter of Patravadi Mejudhon; Pantoee Sritrairatana — marketing head)", "history": "Former Patravadi Theatre (1992–2011), Bangkok’s first open-air theatre founded by National Artist Patravadi Mejudhon. After the 2011 floods, it was rebuilt by her daughter as a boutique in 2016, now showcasing theatre artifacts and costumes beside Wat Rakang.", "notes": "They have small canal tours, partnership-friendly (no overlap with Jon Pichaya). Dinner + cruise via Grill Riverview. Near Wang Lang.", "maps": "https://maps.app.goo.gl/JdUi51daPpdVvW3P7", "th_category": "บูทีควัฒนธรรมมรดก (อดีต Patravadi Theatre)", "th_riverside": "ติดเจ้าพระยา (ฝั่งธน หันหน้าสู่พระบรมมหาราชวัง)", "th_pier": "ท่าวังหลัง N10 (เดิน 5 นาที ผ่านตลาด); มีตุ๊กตุ๊กของโรงแรมรับส่งถึงถนนใหญ่", "th_history": "อดีตเป็น Patravadi Theatre (2535–2554) โรงละครกลางแจ้งแห่งแรกของกรุงเทพฯ ก่อตั้งโดยศิลปินแห่งชาติ ภัทราวดี มีชูธน หลังน้ำท่วมปี 2554 ลูกสาวบูรณะเป็นบูทีคในปี 2559 จัดแสดงอุปกรณ์และเครื่องแต่งกายของโรงละคร ติดวัดระฆัง", "th_notes": "มีทัวร์คลองของตัวเองขนาดเล็ก เป็นพันธมิตรได้ (ไม่ทับ Jon Pichaya) มีดินเนอร์ + cruise ผ่าน Grill Riverview ใกล้วังหลัง"}, {"no": 16, "name": "Chakrabongse Villas", "category": "Royal Heritage Boutique", "priority": "High", "riverside": "Directly on Chao Phraya", "address": "396/1 Thanon Maha Rat, Phra Borom Maha Ratchawang, Phra Nakhon, Bangkok 10200", "pier": "Tha Tien Pier (3-min walk) or Maharaj Pier (5-min walk)", "website": "www.chakrabongsevillas.com", "phone": "+66 2 222 1290", "email": "reservation@chakrabongse.com", "owner": "ML Narisa Chakrabongse (granddaughter of Prince Chakrabongse)", "history": "Former residence of Prince Chakrabongse Bhuvanath (son of King Rama V), built 1908. Now owned by his granddaughter, ML Narisa Chakrabongse. Only 4 villas overlooking Wat Arun and the river. A true royal heritage property.", "notes": "They have own boat experiences", "maps": "https://maps.app.goo.gl/D2b2rGwa4nwJWD8t6", "th_category": "บูทีคมรดกราชสกุล", "th_riverside": "ติดเจ้าพระยา", "th_pier": "ท่าเตียน (เดิน 3 นาที) หรือท่ามหาราช (เดิน 5 นาที)", "th_history": "อดีตที่ประทับของพระเจ้าวรวงศ์เธอ พระองค์เจ้าจักรพงษ์ภูวนาถ (พระราชโอรสในรัชกาลที่ 5) สร้างปี 2451 ปัจจุบันเป็นของ ม.ล.นริศรา จักรพงษ์ (พระนัดดา) มีเพียง 4 วิลล่า วิววัดอรุณและแม่น้ำ มรดกราชสกุลของแท้", "th_notes": "มีประสบการณ์ทางเรือของตัวเองอยู่แล้ว"}, {"no": 17, "name": "Bangkok Publishing Residence", "category": "Heritage Museum-style Boutique", "priority": "Medium", "riverside": "~1.5 km from Chao Phraya", "address": "31-37/1 Lan Luang Rd, Wat Sommanat, Pom Prap Sattru Phai, Bangkok 10100", "pier": "Phan Fa Lilat Pier (10-min walk) via Khlong Saen Saep boat or Phra Athit Pier (20-min)", "website": "www.bpresidence.com", "phone": "+66 2 282 0288", "email": "bpr@bpresidence.com", "owner": "Suwanapruksa Family (descendants of the original publisher)", "history": "Restored home of an old Thai magazine publisher. 7 rooms with printing-press heritage theme. Museum-like public area with original machinery.", "notes": "No cruise. Very high cultural alignment — premium storytelling fits cruise narrative.", "maps": "https://maps.app.goo.gl/5MD8hV1F482PYbhv6", "th_category": "บูทีคสไตล์พิพิธภัณฑ์มรดก", "th_riverside": "ห่างจากเจ้าพระยาประมาณ 1.5 กม.", "th_pier": "ท่าผ่านฟ้าลีลาศ (เดิน 10 นาที) ผ่านเรือคลองแสนแสบ หรือท่าพระอาทิตย์ (20 นาที)", "th_history": "บ้านของสำนักพิมพ์นิตยสารไทยเก่าที่ได้รับการบูรณะ 7 ห้องธีมโรงพิมพ์ พื้นที่สาธารณะจัดแสดงคล้ายพิพิธภัณฑ์พร้อมเครื่องจักรต้นฉบับ", "th_notes": "ไม่มี cruise สอดคล้องกับวัฒนธรรมสูงมาก — การเล่าเรื่องพรีเมียมเข้ากับ narrative ของ cruise"}, {"no": 18, "name": "Hotel Once Bangkok", "category": "Contemporary Boutique Near Riverside", "priority": "Medium", "riverside": "~200m from Chao Phraya (river view from rooftop)", "address": "2074/99 Soi Charoen Krung 72/2, Wat Phraya Krai, Bang Kho Laem, Bangkok 10120", "pier": "Wat Rajsingkorn Pier (5-min walk) or Asiatique Pier via shuttle", "website": "www.hotelonce.com", "phone": "+66 2 688 2596", "email": "Info@hotelonce.com", "owner": "Private Thai ownership", "history": "Boutique hotel near Asiatique. Modern design with riverside rooftop dining.", "notes": "No cruise. Good fit with Asiatique-area tourists seeking dining-plus-cruise packages.", "maps": "https://maps.app.goo.gl/YM7R9w9Lfa3ZDerg8", "th_category": "บูทีคร่วมสมัยใกล้ริมน้ำ", "th_riverside": "ห่างจากเจ้าพระยาประมาณ 200 ม. (วิวแม่น้ำจากรูฟท็อป)", "th_pier": "ท่าวัดราชสิงขร (เดิน 5 นาที) หรือท่า Asiatique ผ่านเรือรับส่ง", "th_history": "โรงแรมบูทีคใกล้ Asiatique ดีไซน์สมัยใหม่ ร้านอาหารรูฟท็อปริมน้ำ", "th_notes": "ไม่มี cruise เข้ากันดีกับนักท่องเที่ยวย่าน Asiatique ที่มองหาแพ็คเกจดินเนอร์ + cruise"}, {"no": 19, "name": "The Salil Hotel Riverside Bangkok", "category": "Contemporary Riverside Boutique", "priority": "Medium", "riverside": "Directly on Chao Phraya", "address": "2052/7-9 Soi Charoen Krung 72/1, Wat Phraya Krai, Bang Kho Laem, Bangkok 10120", "pier": "Hotel shuttle pier to Asiatique & Sathorn; Wat Rajsingkorn Pier (5-min walk)", "website": "www.thesalilhotel.com/riverside", "phone": "+66 2 844 8787", "email": "manager@thesalilriverside.com", "owner": "Salil Hotel Group (Thai)", "history": "Mid-sized contemporary boutique (~130 rooms). Part of Salil Group. Houses HARNN Heritage Spa. Riverside pool with sunset views.", "notes": "Has own shuttle boat (free). May overlap — but cruise is different product; can pitch as premium add-on.", "maps": "https://maps.app.goo.gl/teQyRiZdaPNfVHqx8", "th_category": "บูทีคริมน้ำร่วมสมัย", "th_riverside": "ติดเจ้าพระยา", "th_pier": "เรือรับส่งของโรงแรมไป Asiatique และสาทร; ท่าวัดราชสิงขร (เดิน 5 นาที)", "th_history": "บูทีคร่วมสมัยขนาดกลาง (~130 ห้อง) ในเครือ Salil Group มีสปา HARNN Heritage Spa พูลริมน้ำวิวพระอาทิตย์ตก", "th_notes": "มีเรือรับส่งของตัวเอง (ฟรี) อาจทับซ้อนบ้าง แต่ cruise เป็นผลิตภัณฑ์คนละแบบ พิตช์เป็น add-on พรีเมียมได้"}, {"no": 20, "name": "1905 Heritage Corner", "category": "Intimate Heritage Boutique", "priority": "Medium", "riverside": "~800m from Chao Phraya", "address": "68 Phraeng Phuthon Rd, San Chao Pho Sua, Phra Nakhon, Bangkok 10200", "pier": "Tha Chang Pier (10-min walk) or Tha Tien Pier (12-min walk)", "website": "www.1905heritagecorner.com", "phone": "+66 90 989 3107", "email": "info@1905heritagecorner.com", "owner": "Private Thai family", "history": "A 3-room boutique in a restored 1905 shophouse on historic Phraeng Phuthon Square. Personal, family-run feel. Linked to Anya Café next door.", "notes": "No cruise. Small, but guests are heritage-focused. Good for exclusive private-charter pitch.", "maps": "https://www.google.com/maps/search/?api=1&query=13.751634999999998,100.497096", "th_category": "บูทีคมรดกขนาดเล็ก", "th_riverside": "ห่างจากเจ้าพระยาประมาณ 800 ม.", "th_pier": "ท่าช้าง (เดิน 10 นาที) หรือท่าเตียน (เดิน 12 นาที)", "th_history": "บูทีค 3 ห้องในตึกแถวปี 1905 ที่บูรณะแล้ว บนย่านแพร่งภูธรอันเก่าแก่ อารมณ์อบอุ่นแบบครอบครัว เชื่อมกับ Anya Café ข้างๆ", "th_notes": "ไม่มี cruise ขนาดเล็ก แต่แขกเน้น heritage — เหมาะพิตช์แบบเช่าเหมาส่วนตัว (private charter)"}];
+const STORAGE_KEY = 'jon_pichaya_hotel_pitch_v2';
+
+let currentLang = 'en';
+let currentFilter = 'all';
+let state = loadState();
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  const init = {};
+  HOTELS.forEach(h => { init[h.no] = { decision: 'pending', note: '' }; });
+  return init;
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function mkWebLink(url) {
+  if (!url) return '';
+  let href = url.trim();
+  if (!href.startsWith('http')) href = 'https://' + href;
+  return href;
+}
+
+function mkGmailLink(email, hotelName) {
+  if (!email || email === 'Email not found') return '';
+  const subject = encodeURIComponent('The Roots Routes × ' + hotelName + ' — Partnership Inquiry (Jon Pichaya Boat)');
+  return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email) + '&su=' + subject;
+}
+
+function cardHTML(h) {
+  const dec = (state[h.no] && state[h.no].decision) || 'pending';
+  const note = (state[h.no] && state[h.no].note) || '';
+  const cardClass = dec === 'selected' ? 'selected' : (dec === 'excluded' ? 'excluded' : '');
+
+  const imageSearchUrl = 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(h.name + ' Bangkok hotel');
+  const webUrl = mkWebLink(h.website);
+  const phoneClean = h.phone ? h.phone.replace(/\s+/g, '') : '';
+  const gmailUrl = mkGmailLink(h.email, h.name);
+  const hasEmail = h.email && h.email !== 'Email not found';
+
+  return `
+  <article class="hotel-card ${cardClass}" data-no="${h.no}" data-priority="${h.priority}">
+    <div class="card-top">
+      <div class="card-num">${String(h.no).padStart(2, '0')}</div>
+      <div class="card-title">
+        <div class="hotel-name">${escHtml(h.name)}</div>
+        <div class="hotel-category">
+          <span data-lang-en>${escHtml(h.category)}</span>
+          <span data-lang-th>${escHtml(h.th_category)}</span>
+        </div>
+      </div>
+      <span class="priority-badge ${h.priority.toLowerCase()}">${escHtml(h.priority)}</span>
+    </div>
+
+    <div class="card-body">
+      <div class="info-row">
+        <div class="info-item">
+          <div class="info-label"><span data-lang-en>Riverside</span><span data-lang-th>ริมน้ำ</span></div>
+          <div class="info-value"><span data-lang-en>${escHtml(h.riverside)}</span><span data-lang-th>${escHtml(h.th_riverside)}</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label"><span data-lang-en>Nearest Pier</span><span data-lang-th>ท่าเรือใกล้สุด</span></div>
+          <div class="info-value"><span data-lang-en>${escHtml(h.pier)}</span><span data-lang-th>${escHtml(h.th_pier)}</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label"><span data-lang-en>Owner</span><span data-lang-th>เจ้าของ</span></div>
+          <div class="info-value">${escHtml(h.owner)}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label"><span data-lang-en>Contact</span><span data-lang-th>ติดต่อ</span></div>
+          <div class="info-value">
+            ${h.phone ? `<a href="tel:${phoneClean}">${escHtml(h.phone)}</a>` : '—'}<br>
+            ${hasEmail ? `<a href="mailto:${escHtml(h.email)}">${escHtml(h.email)}</a>` : '<span style="color:var(--muted);font-size:12px;">no email</span>'}
+          </div>
+        </div>
+        <div class="info-item" style="grid-column: 1 / -1;">
+          <div class="info-label"><span data-lang-en>Address</span><span data-lang-th>ที่อยู่</span></div>
+          <div class="info-value">${escHtml(h.address)}</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-label"><span data-lang-en>History</span><span data-lang-th>ประวัติ</span></div>
+        <div class="section-text">
+          <span data-lang-en>${escHtml(h.history)}</span>
+          <span data-lang-th>${escHtml(h.th_history)}</span>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-label"><span data-lang-en>Notes / Product Fit</span><span data-lang-th>หมายเหตุ / ความเหมาะ</span></div>
+        <div class="section-text">
+          <span data-lang-en>${escHtml(h.notes)}</span>
+          <span data-lang-th>${escHtml(h.th_notes)}</span>
+        </div>
+      </div>
+
+      <div class="link-row">
+        ${h.maps ? `<a class="link-btn map" href="${escHtml(h.maps)}" target="_blank" rel="noopener"><span class="icon">📍</span><span data-lang-en>Maps</span><span data-lang-th>แผนที่</span></a>` : ''}
+        ${webUrl ? `<a class="link-btn" href="${escHtml(webUrl)}" target="_blank" rel="noopener"><span class="icon">🌐</span><span data-lang-en>Website</span><span data-lang-th>เว็บไซต์</span></a>` : ''}
+        <a class="link-btn" href="${imageSearchUrl}" target="_blank" rel="noopener"><span class="icon">🖼</span><span data-lang-en>Hotel Photos</span><span data-lang-th>รูปโรงแรม</span></a>
+        ${hasEmail ? `<a class="link-btn email" href="${gmailUrl}" target="_blank" rel="noopener"><span class="icon">✉</span><span data-lang-en>Compose Gmail</span><span data-lang-th>เขียนเมล (Gmail)</span></a>` : `<span class="link-btn disabled"><span class="icon">✉</span><span data-lang-en>No email</span><span data-lang-th>ไม่มีอีเมล</span></span>`}
+      </div>
+
+      <div class="decision-box">
+        <div class="decision-top">
+          <div class="decision-radios">
+            <button class="radio-btn ${dec==='selected'?'sel-active':''}" onclick="setDecision(${h.no}, 'selected')">
+              <span>✓</span> <span data-lang-en>Pitch</span><span data-lang-th>พิตช์</span>
+            </button>
+            <button class="radio-btn ${dec==='excluded'?'exc-active':''}" onclick="setDecision(${h.no}, 'excluded')">
+              <span>✕</span> <span data-lang-en>Skip</span><span data-lang-th>ข้าม</span>
+            </button>
+            <button class="radio-btn ${dec==='pending'?'pen-active':''}" onclick="setDecision(${h.no}, 'pending')">
+              <span>◌</span> <span data-lang-en>Pending</span><span data-lang-th>รอ</span>
+            </button>
+          </div>
+          <div class="status-indicator ${dec==='selected'?'sel':(dec==='excluded'?'exc':'')}">
+            ${dec==='selected' ? '<span data-lang-en>Will Pitch</span><span data-lang-th>จะพิตช์</span>' : (dec==='excluded' ? '<span data-lang-en>Skipped</span><span data-lang-th>ข้าม</span>' : '<span data-lang-en>Awaiting</span><span data-lang-th>รอตัดสิน</span>')}
+          </div>
+        </div>
+        <textarea class="note-textarea" placeholder="${currentLang==='th'?'โน้ต: วิธีพิตช์, คอนแทค, ฟีดแบ็ค, ขั้นถัดไป...':'Notes: pitch angle, contacts, feedback, next steps...'}" oninput="setNote(${h.no}, this.value)">${escHtml(note)}</textarea>
+      </div>
+    </div>
+  </article>`;
+}
+
+function render() {
+  const grid = document.getElementById('hotels-grid');
+  grid.innerHTML = HOTELS.map(cardHTML).join('');
+  applyFilter();
+  updateCount();
+}
+
+function setDecision(no, decision) {
+  state[no] = state[no] || { decision: 'pending', note: '' };
+  state[no].decision = decision;
+  saveState();
+  render();
+}
+
+function setNote(no, value) {
+  state[no] = state[no] || { decision: 'pending', note: '' };
+  state[no].note = value;
+  saveState();
+}
+
+function updateCount() {
+  const total = HOTELS.length;
+  const selected = HOTELS.filter(h => state[h.no] && state[h.no].decision === 'selected').length;
+  document.getElementById('count-selected').textContent = selected;
+  document.getElementById('count-total').textContent = total;
+  document.getElementById('count-selected-th').textContent = selected;
+  document.getElementById('count-total-th').textContent = total;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-th').classList.toggle('active', lang==='th');
+  document.querySelectorAll('.note-textarea').forEach(ta => {
+    ta.placeholder = lang==='th'?'โน้ต: วิธีพิตช์, คอนแทค, ฟีดแบ็ค, ขั้นถัดไป...':'Notes: pitch angle, contacts, feedback, next steps...';
+  });
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  applyFilter();
+}
+
+function applyFilter() {
+  document.querySelectorAll('.hotel-card').forEach(card => {
+    const no = parseInt(card.dataset.no);
+    const priority = card.dataset.priority;
+    const dec = (state[no] && state[no].decision) || 'pending';
+    let show = true;
+    if (currentFilter === 'High' && priority !== 'High') show = false;
+    else if (currentFilter === 'Medium' && priority !== 'Medium') show = false;
+    else if (currentFilter === 'selected' && dec !== 'selected') show = false;
+    card.classList.toggle('hidden', !show);
+  });
+}
+
+function exportData() {
+  const selected = HOTELS.filter(h => state[h.no] && state[h.no].decision === 'selected');
+  const excluded = HOTELS.filter(h => state[h.no] && state[h.no].decision === 'excluded');
+  const pending = HOTELS.filter(h => !state[h.no] || state[h.no].decision === 'pending');
+
+  let txt = 'JON PICHAYA — HOTEL PITCH LIST EXPORT\n';
+  txt += '='.repeat(50) + '\n';
+  txt += 'Date: ' + new Date().toLocaleString() + '\n\n';
+  txt += `SUMMARY: ${selected.length} pitch / ${excluded.length} skip / ${pending.length} pending\n\n`;
+
+  txt += `[ PITCHING (${selected.length}) ]\n`;
+  selected.forEach(h => {
+    const note = (state[h.no] && state[h.no].note) || '';
+    txt += `  ${h.no}. ${h.name} [${h.priority}]\n`;
+    if (h.email && h.email !== 'Email not found') txt += `     Email: ${h.email}\n`;
+    if (note) txt += `     Note: ${note}\n`;
+  });
+
+  txt += `\n[ SKIPPED (${excluded.length}) ]\n`;
+  excluded.forEach(h => {
+    const note = (state[h.no] && state[h.no].note) || '';
+    txt += `  ${h.no}. ${h.name}\n`;
+    if (note) txt += `     Note: ${note}\n`;
+  });
+
+  txt += `\n[ PENDING (${pending.length}) ]\n`;
+  pending.forEach(h => { txt += `  ${h.no}. ${h.name}\n`; });
+
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'jon_pichaya_pitch_' + new Date().toISOString().slice(0,10) + '.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function confirmReset() { document.getElementById('reset-bar').classList.add('show'); }
+function hideReset() { document.getElementById('reset-bar').classList.remove('show'); }
+function doReset() {
+  state = {};
+  HOTELS.forEach(h => { state[h.no] = { decision: 'pending', note: '' }; });
+  saveState();
+  render();
+  hideReset();
+}
+
+render();
+</script>
+</body>
+</html>
